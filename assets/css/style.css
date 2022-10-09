@@ -7,3 +7,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {  
+  .part-of-speech {
+    font-style: italic;
+  }
+
+  .part-of-speech::after {
+    content: " (part of speech)";
+    color: gray;
+  }
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+}
+ol li::marker {
+  content: counter(my-awesome-counter) " ";
+  color: cornflowerblue;
+  font-weight: 500;
+}
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { cursor: pointer; }
+
