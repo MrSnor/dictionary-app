@@ -28,7 +28,7 @@ ol li {
 }
 ol li::marker {
   content: counter(my-awesome-counter) " ";
-  color: cornflowerblue;
+  color: crimson;
   font-weight: 500;
 }
 
