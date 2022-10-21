@@ -41,6 +41,10 @@ input[type="search"]::-webkit-search-results-decoration { cursor: pointer; }
 /* loading components */
 @layer components {
     .loading-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      
       @apply spinner-border animate-spin mx-auto block w-8 h-8 rounded-full
     }
 

@@ -78,5 +78,5 @@ meanings.forEach(defnObj => {
 
 
 wordDefinition.innerHTML = wordDefinitionInput
-wordLoading.classList.toggle('hidden')
+wordLoading.classList.toggle('opacity-0')
 wordInfoContainer.classList.toggle('hidden')
