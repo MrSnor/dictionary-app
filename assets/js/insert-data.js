@@ -3,11 +3,8 @@
 const wordInfoContainer = document.getElementById('word-info-container')
 const searchedWordDiv = document.getElementById('searchedWord')
 const wordDefinition = document.getElementById('word-definitions')
+const wordLoading = document.querySelector('.word-loading ')
 
-// TODO improve loading/ prolly add a loading circle through css classes
-wordDefinition.innerHTML = `
-Loading...
-`
 const headersList = {
   "Accept": "*/*"
 }
@@ -81,3 +78,5 @@ meanings.forEach(defnObj => {
 
 
 wordDefinition.innerHTML = wordDefinitionInput
+wordLoading.classList.toggle('hidden')
+wordInfoContainer.classList.toggle('hidden')
