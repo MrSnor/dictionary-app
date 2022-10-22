@@ -9,47 +9,48 @@ const headersList = {
   "Accept": "*/*"
 }
 
-const searchWord = 'help'
+async function insert_data() {
+  wordLoading.classList.toggle('opacity-0')
+  const searchWord = 'help'
+  let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`, {
+    method: "GET",
+    headers: headersList
+  });
+  // console.log("🚀 ~ response", response);
 
-let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`, {
-  method: "GET",
-  headers: headersList
-});
-// console.log("🚀 ~ response", response);
-
-const data = await response.json();
-console.log("🚀 ~ data", data);
-searchedWordDiv.innerHTML = `
+  const data = await response.json();
+  console.log("🚀 ~ data", data);
+  searchedWordDiv.innerHTML = `
 ${data[0].word}
-<span class="text-2xl text-gray-400">${data[0].phonetic}</span>
+<span class="text-2xl text-gray-400">${data[0]?.phonetic ?? ''}</span>
 `
 
-// extract defintions from nested object/arrays and structure them all into an array
-const meanings = []
-data.forEach(element => {
-  element['meanings'].forEach(definition => {
-    meanings.push(definition)
+  // extract defintions from nested object/arrays and structure them all into an array
+  const meanings = []
+  data.forEach(element => {
+    element['meanings'].forEach(definition => {
+      meanings.push(definition)
+    })
   })
-})
-// console.log("🚀 ~ meanings ~ meanings", meanings);
+  // console.log("🚀 ~ meanings ~ meanings", meanings);
 
-// data to be put inside 'wordDefinition' div
-let wordDefinitionInput = ``
+  // data to be put inside 'wordDefinition' div
+  let wordDefinitionInput = ``
 
-// iterate through array and set values in the 'wordDefinitionInput'
-meanings.forEach(defnObj => {
+  // iterate through array and set values in the 'wordDefinitionInput'
+  meanings.forEach(defnObj => {
 
-  const definitionsArray = defnObj.definitions
-  // console.log("🚀 ~ definitionsArray", definitionsArray);
+    const definitionsArray = defnObj.definitions
+    // console.log("🚀 ~ definitionsArray", definitionsArray);
 
-  // a html div which will contain html list of definitions and examples
-  let defAndExampleListDiv = ``
+    // a html div which will contain html list of definitions and examples
+    let defAndExampleListDiv = ``
 
-  // set definition and example in a html list template
-  definitionsArray.forEach(element => {
+    // set definition and example in a html list template
+    definitionsArray.forEach(element => {
 
-    // using ternary operator to check for undefined values
-    defAndExampleListDiv += `
+      // using ternary operator to check for undefined values
+      defAndExampleListDiv += `
     <li>
     <div class="definition">
       ${element.definition}
@@ -59,10 +60,10 @@ meanings.forEach(defnObj => {
     </div>
   </li>
     `
-  });
-  // console.log("🚀 ~ defAndExampleListDiv", defAndExampleListDiv);
+    });
+    // console.log("🚀 ~ defAndExampleListDiv", defAndExampleListDiv);
 
-  wordDefinitionInput += `
+    wordDefinitionInput += `
   <div class="word-definition">
     <div>
       <div class="part-of-speech">
@@ -74,9 +75,12 @@ meanings.forEach(defnObj => {
     </div>
   </div>
   `
-});
+  });
 
 
-wordDefinition.innerHTML = wordDefinitionInput
-wordLoading.classList.toggle('opacity-0')
-wordInfoContainer.classList.toggle('hidden')
+  wordDefinition.innerHTML = wordDefinitionInput
+  wordLoading.classList.toggle('opacity-0')
+  wordInfoContainer.classList.toggle('hidden')
+}
+
+document.querySelector('#button-addon2').addEventListener('click', insert_data)
