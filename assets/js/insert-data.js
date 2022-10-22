@@ -3,15 +3,20 @@
 const wordInfoContainer = document.getElementById('word-info-container')
 const searchedWordDiv = document.getElementById('searchedWord')
 const wordDefinition = document.getElementById('word-definitions')
-const wordLoading = document.querySelector('.word-loading ')
+const wordLoading = document.querySelector('.word-loading')
+const wordSearch = document.querySelector('#word-input-container input')
+const wordSearchBtn = document.querySelector('#word-input-container .input-button')
 
 const headersList = {
   "Accept": "*/*"
 }
 
 async function insert_data() {
-  wordLoading.classList.toggle('opacity-0')
-  const searchWord = 'help'
+  // if loader contains 'opacity-0' and isn't visible, make it visible 
+  if (wordLoading.classList.contains('opacity-0')) { wordLoading.classList.remove('opacity-0') }
+
+  // take value from search input
+  const searchWord = wordSearch.value
   let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`, {
     method: "GET",
     headers: headersList
@@ -79,8 +84,11 @@ ${data[0].word}
 
 
   wordDefinition.innerHTML = wordDefinitionInput
-  wordLoading.classList.toggle('opacity-0')
-  wordInfoContainer.classList.toggle('hidden')
+
+  // if loader doesnt contain 'opacity-0' and is visible, make it invisible
+  if (!wordLoading.classList.contains('opacity-0')) { wordLoading.classList.add('opacity-0') }
+  // if 'wordInfoContainer contains 'hidden' and isn't visible, make it visible 
+  if (wordInfoContainer.classList.contains('hidden')) { wordInfoContainer.classList.remove('hidden') }
 }
 
 document.querySelector('#button-addon2').addEventListener('click', insert_data)

@@ -2,3 +2,7 @@ node_modules
 dist
 
 todo.md
+
+# test files
+fetchDict.js
+gallery.html
