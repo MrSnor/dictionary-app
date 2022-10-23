@@ -93,12 +93,26 @@ ${data[0].word}
 
   // set value of previous word(last searched word) to currently searched word
   prevWord = wordSearch.value
+  // empty word-input after a successful search
+  wordSearch.value = ''
 }
 
-document.querySelector('#button-addon2').addEventListener('click', () => {
+// add eventlistener to search button
+wordSearchBtn.addEventListener('click', () => {
   // prevent searching the last searched word successively
   // only search the currently searched item if it isn't the same as last searched word
   if (wordSearch.value != prevWord) {
     insert_data()
   }
 })
+
+// Execute a function when the user presses a key on the keyboard
+wordSearch.addEventListener("keypress", (event) => {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    wordSearchBtn.click();
+  }
+});
