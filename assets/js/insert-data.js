@@ -6,6 +6,7 @@ const wordDefinition = document.getElementById('word-definitions')
 const wordLoading = document.querySelector('.word-loading')
 const wordSearch = document.querySelector('#word-input-container input')
 const wordSearchBtn = document.querySelector('#word-input-container .input-button')
+let prevWord = null
 
 const headersList = {
   "Accept": "*/*"
@@ -89,6 +90,15 @@ ${data[0].word}
   if (!wordLoading.classList.contains('opacity-0')) { wordLoading.classList.add('opacity-0') }
   // if 'wordInfoContainer contains 'hidden' and isn't visible, make it visible 
   if (wordInfoContainer.classList.contains('hidden')) { wordInfoContainer.classList.remove('hidden') }
+
+  // set value of previous word(last searched word) to currently searched word
+  prevWord = wordSearch.value
 }
 
-document.querySelector('#button-addon2').addEventListener('click', insert_data)
+document.querySelector('#button-addon2').addEventListener('click', () => {
+  // prevent searching the last searched word successively
+  // only search the currently searched item if it isn't the same as last searched word
+  if (wordSearch.value != prevWord) {
+    insert_data()
+  }
+})
