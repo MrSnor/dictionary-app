@@ -12,12 +12,12 @@ const headersList = {
   "Accept": "*/*"
 }
 
-async function insert_data() {
+async function insert_data(word) {
   // if loader contains 'opacity-0' and isn't visible, make it visible 
   if (wordLoading.classList.contains('opacity-0')) { wordLoading.classList.remove('opacity-0') }
 
   // take value from search input
-  const searchWord = wordSearch.value
+  const searchWord = word
   let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`, {
     method: "GET",
     headers: headersList
@@ -92,17 +92,22 @@ ${data[0].word}
   if (wordInfoContainer.classList.contains('hidden')) { wordInfoContainer.classList.remove('hidden') }
 
   // set value of previous word(last searched word) to currently searched word
-  prevWord = wordSearch.value
+  prevWord = searchWord
   // empty word-input after a successful search
   wordSearch.value = ''
 }
 
 // add eventlistener to search button
 wordSearchBtn.addEventListener('click', () => {
+  // remove starting and ending spaces of the word
+  const word = wordSearch.value.trim()
   // prevent searching the last searched word successively
   // only search the currently searched item if it isn't the same as last searched word
-  if (wordSearch.value != prevWord) {
-    insert_data()
+  if (word != prevWord) {
+    // prevent input of empty values
+    if (word != '') {
+      insert_data(word)
+    }
   }
 })
 
