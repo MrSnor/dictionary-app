@@ -15,6 +15,7 @@
       <nav class="du-navbar bg-primary">
         <div class="flex-1">
           <a class="du-btn bg-white text-base-content hover:text-base-200 normal-case text-2xl"
+          href=""
           >
             Doom Dictionary
           </a>
@@ -23,7 +24,7 @@
       </nav>
       <!-- navbar end -->
 
-      <main class="py-10 px-10 bg-white">
+      <main class="py-10 px-8 md:px-10 bg-white">
         <div class="min-h-[50vh]">
           <!-- search container -->
           <div class="flex justify-start">
@@ -45,16 +46,26 @@
           </div>
 
 
-        <div id="word-info-container" class="hidden" transition-style="in:wipe:down">
+        <div id="word-info-container" class="" transition-style="in:wipe:down">
           <!-- The word -->
             <h2 id="searchedWord" class="text-5xl font-semibold border-b-2 border-gray-600 py-4">
               <!-- data will be filled here through js -->
+              <!-- Initial default text -->
+              Welcome to the Doom Dictionary
             </h2>
             <!-- Word definitions -->
             <div id="word-definitions" class="space-y-10 p-4">
 
               <!-- data will be filled here through js -->
 
+              <!-- Initial default text -->
+              <div class="">
+                This is a demo dictionary using 
+                <a href="https://dictionaryapi.dev/" class="du-link link-primary "
+                target="_blank"
+                >Free Dictionary API</a>.
+                Feel free to test it out by searching words in the above search bar.
+              </div>
             </div>
         </div>
 
