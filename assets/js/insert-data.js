@@ -1,4 +1,4 @@
-
+import anime from 'animejs/lib/anime.es.js';
 
 const wordInfoContainer = document.getElementById('word-info-container')
 const searchedWordDiv = document.getElementById('searchedWord')
@@ -13,6 +13,19 @@ const headersList = {
 }
 
 async function insert_data(word) {
+  
+  // transtion when word is searched
+  anime({
+    targets: wordInfoContainer,
+    translateY: [0, -200],
+    opacity: [1,0],
+    duration: 200,
+    // begin: function (anim) {
+    //   console.log('start');
+    //   console.time()
+    // }
+  })
+
   // if loader contains 'opacity-0' and isn't visible, make it visible 
   if (wordLoading.classList.contains('opacity-0')) { wordLoading.classList.remove('opacity-0') }
 
@@ -145,6 +158,20 @@ async function insert_data(word) {
     if (wordInfoContainer.classList.contains('hidden')) { wordInfoContainer.classList.remove('hidden') }
     // if loader doesnt contain 'opacity-0' and is visible, make it invisible
     if (!wordLoading.classList.contains('opacity-0')) { wordLoading.classList.add('opacity-0') }
+
+    // transtion when result is shown
+      anime({
+        targets: wordInfoContainer,
+        translateY: [200, 0],
+        opacity: [0,1],
+        duration:200,
+        delay: 200,
+        easing: 'easeInQuad',
+        // complete: function (anim) {
+        //   console.log('finish');
+        //   console.timeEnd()
+        // }
+      })
   }
 }
 

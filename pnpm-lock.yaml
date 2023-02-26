@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  animejs: ^3.2.1
   autoprefixer: ^10.4.8
   daisyui: ^2.31.0
   path: ^0.12.7
@@ -10,6 +11,7 @@ specifiers:
   vite: ^3.0.4
 
 dependencies:
+  animejs: 3.2.1
   autoprefixer: 10.4.12_postcss@8.4.17
   daisyui: 2.31.0_5zjlt5w4ir2cay3te66iu3k3ji
   path: 0.12.7
@@ -82,6 +84,10 @@ packages:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: false
+
+  /animejs/3.2.1:
+    resolution: {integrity: sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==}
     dev: false
 
   /anymatch/3.1.2:
